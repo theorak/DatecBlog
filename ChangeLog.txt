@@ -1,0 +1,78 @@
+ChangeLog for DatecBlog
+=======================
+
+This is the changelog description file for 'datec_blog' authored by Philipp Roensch.
+
+------------------------
+
+Version 1.0.3
+=============
+
+Finally added some lovely Icons!
+Added Pagination, can be disabled and configured with items-per-page, max-pages, top/bottom/both. 
+Also fixed a bug with BE-Users as comment creators.
+Fixed a minor bug from last update and cleaned up the code.
+
+------------------------
+
+[BUGFIX] Column 'blocked' was not configured in one copy of the extension
+[BUGFIX] Fixed bug on assigning BE-users to the comment display
+[DESIGN] Icons for plugin and all entities added
+[FEATURE] Pagination for blogposts list
+[QUALITY] All internal code was cleaned up and streamlined for future implementations
+
+Version 1.0.2
+=============
+
+This update adds access control for categories and blogposts, the posts inherit access from their categories.
+Access can be given to certain frontent user groups and respects the hierarchy of them.
+Also user now may upload files to blogpost on comments, filesize and mimetypes are configurable and will be validated, the feature can be disabled per blogpost.
+Some smaller improvements have been made to the JavaScript, changing the behavior of the comment creation (form will be submitted instead of send per AJAX) and allows direct links to blogposts.
+
+If you want to link to a blogpost you may add the following parameters to the blog URL:
+&blogpost=<ID> 			=> directly to post
+#tx-datec-blog-comment-<ID> 	=> focus on comment
+#tx-datec-blog-comments  	=> focus on comment section
+
+This feature will be expanded in the future to add filters in bloglist and more.
+
+Attention: To incorperate the recent changes, please run this update script on your database:
+ALTER TABLE tx_datecblog_domain_model_category ADD usergroups tinytext NOT NULL;
+ALTER TABLE tx_datecblog_domain_model_post ADD comments_fileupload tinyint(4) NOT NULL DEFAULT '0';
+ALTER TABLE tx_datecblog_domain_model_post ADD comments_usergroups tinytext NOT NULL;
+ALTER TABLE tx_datecblog_domain_model_comment ADD files text NOT NULL;
+
+------------------------
+
+[FEATURE] Categories can now hold frontend user groups for access restriction, the set usergroups will be inherited by the blogposts in this category
+[FEATURE] Blogposts can controll access to comments by frontend user groups
+[FEATURE] Comments can now have files uploaded and show them below the comment
+[FEATURE] Direct link to blogposts and comments
+[QUALITY] Listing of comments checks if comments are to be displayed
+[QUALITY] Replying to comment down in the list sets focus back to form
+
+Version 1.0.1
+=============
+
+This update aims to fix some minor bugs and addes features for comment information display on the blogposts list.
+A naming bug in a installation file was fixed.
+
+Attention: To incorperate the recent changes, please run this update script on your database:
+ALTER TABLE tx_datecblog_domain_model_comment CHANGE commentcreator comment_creator int(11);
+
+-------------------------
+
+[BUGFIX] Installation file 'ext_tables.sql' changed column name from 'commentcreator' to 'comment_creator' in 'tx_datecblog_domain_model_comment'
+[BUGFIX] Creating comments was only checking public users for 'blocked' attribute, now it's for all
+[BUGFIX] AjaxCalls by this plugin are now configured to avoid collisions with other plugins 'ajaxCallDatecBlog'
+[BUGFIX] No avaiable categories now shows the correct error message
+[BUGFIX] Because the frontend user cannot be loaded with the comment creator, it will be loaded on occasions needed and only the frontend user uid is saved
+[FEATURE] Blogpost list now shows count of comments and last comment per post
+[FEATURE] Also you can click the comment information below a blogpost to show the blogpost singleview with focus on comments
+[FEATURE] For comment creators feUser reference the naming format can be configured to show username, first- and lastname, only firstname or only lastname
+[LANG] Completed english translation
+
+Release Version 1.0.0
+=====================
+
+This is the first full stable release of 'datec_blog'

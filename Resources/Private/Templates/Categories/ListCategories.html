@@ -1,0 +1,10 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<div class="tx-datec-blog-categories">
+	<f:if condition="{settings.display.showDefaultHeaders}">
+		<h3><f:translate key="tx_datecblog.titles.categoriesController.listCategories" /></h3>
+	</f:if>
+	<f:render partial="Categories/Categories" arguments="{settings:settings, categoryTree:categoryTree}"/>
+</div>
+</f:section>

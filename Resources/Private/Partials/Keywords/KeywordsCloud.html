@@ -1,0 +1,16 @@
+<f:if condition="{keywords}">
+	<f:then>
+		<div id="tx-datec-blog-keyword-cloud" class="tx-datec-blog-keyword-cloud">
+			<f:for each="{keywords}" as="keyword" iteration="iterator">
+				<div data-filter-type="keyword" data-filter-value="{keyword.uid}" onclick="DatecBlog.addToFilter(this)" class="tx-datec-blog-cloud-item size-{keyword.clickCount}">
+					{keyword.word}				
+				</div>
+			</f:for>
+		</div>		
+	</f:then>
+	<f:else>
+		<div class="info">
+			<f:flashMessages renderMode="div" />
+		</div>
+	</f:else>
+</f:if>

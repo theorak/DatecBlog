@@ -1,0 +1,345 @@
+.tx-datec-blog .info {
+    padding: 10px;
+}
+
+.tx-datec-blog .caret {
+	cursor: pointer;
+}
+
+.tx-datec-blog .caret.open {
+	transform: rotate(180deg);
+}
+
+.tx-datec-blog .typo3-messages {
+    font-weight: 600;
+}
+
+.tx-datec-blog .typo3-message.message-ok {
+    color: green;
+}
+
+.tx-datec-blog .typo3-message.message-warning {
+    color: inherit;
+}
+
+.tx-datec-blog .typo3-message.message-error {
+    color: red;
+}
+	
+.tx-datec-blog-infobar {
+    margin-bottom: 20px;
+}
+
+.tx-datec-blog-filterBloglistForm {
+    margin-bottom: 20px;
+}
+
+.tx-datec-blog-filters {
+	border: 1px dashed #777;
+	width: 100%;
+	min-height: 35px;
+	padding: 15px;
+	margin-bottom: 10px;
+}
+
+.tx-datec-blog-filters:after {
+	content: " ";
+	clear: both;
+	display: table;
+}
+	
+.tx-datec-blog-filters > div {
+    float: left;
+    margin-left: 5px;
+}
+
+.tx-datec-blog-filters > div:first-child {
+    margin-left: 0;
+}
+
+.tx-datec-blog-filterItem  {
+	cursor: pointer;
+	padding: 2px;
+}
+
+.tx-datec-blog-filterItem-category {
+	background-color: #FFFF66
+}
+
+.tx-datec-blog-filterItem-archivePeriod {
+	background-color: #CCFFFF
+}
+
+.tx-datec-blog-filterItem-keyword {
+	background-color: #FF9933
+}
+
+.tx-datec-blog-filterItem-category:hover {
+	background-color: #ddd;
+    color: #777;
+}
+
+.tx-datec-blog-filterItem-archivePeriod:hover {
+	background-color: #ddd;
+    color: #777;
+}
+
+.tx-datec-blog-filterItem-keyword:hover {
+	background-color: #ddd;
+    color: #777;
+}
+
+.tx-datec-blog-status {
+    margin: 5px;
+}
+
+.tx-datec-blog-post-single {
+	margin-bottom: 20px
+}
+
+.tx-datec-blog-post {
+	background-color: #fff;
+	margin-bottom: 20px;	
+}
+
+.tx-datec-blog-post-header {
+	background-color: #ccc;
+	padding: 10px;
+}
+
+.tx-datec-blog-post-header h1,
+.tx-datec-blog-post-header h2,
+.tx-datec-blog-post-header h3,
+.tx-datec-blog-post-header h4,
+.tx-datec-blog-post-header h5,
+.tx-datec-blog-post-header h6 {
+	margin: 0;
+}
+
+.tx-datec-blog-post-header {
+	cursor: pointer;
+}
+
+.tx-datec-blog-post-header:hover {
+	background-color: #ddd;
+}
+
+.tx-datec-blog-post-teaserText {
+    padding: 10px;
+}
+
+.tx-datec-blog-post-teaserText p:last-child {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
+.tx-datec-blog-post-text {
+    padding: 10px;
+}
+
+.tx-datec-blog-post-teaserImage {
+    padding: 10px;
+}
+
+.tx-datec-blog-post-teaserImage img {
+	height: auto;
+    max-width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tx-datec-blog-post-images {
+    padding: 10px;
+}
+
+.tx-datec-blog-post-images:after {
+	content: " ";
+	clear: both;
+	display: table;
+}
+
+.tx-datec-blog-post-images img {
+	height: auto;
+    max-width: 250px;
+    display: block;
+	float: left;
+	margin-left: 20px;
+}
+
+.tx-datec-blog-post-images img:first-child {
+	margin: 0;
+}
+
+.tx-datec-blog-post-meta {
+	font-style: italic;
+	padding: 5px;
+}
+
+.tx-datec-blog-post-meta span {
+	cursor: pointer;
+}
+
+.tx-datec-blog-post-meta span:hover,
+.tx-datec-blog-post-meta span:focus {
+	background-color: #ff8a14;
+}
+
+.tx-datec-blog-post-commentInfo {
+    background-color: #ccc;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.tx-datec-blog-post-commentInfo:after {
+	content: " ";
+	clear: both;
+	display: table;
+}
+
+.tx-datec-blog-post-commentInfo:hover {
+    background-color: #ddd;
+}
+
+.tx-datec-blog-post-commentInfo:hover .tx-datec-blog-comment-creator {
+    background-color: #ddd;
+}
+
+.tx-datec-blog-post-commentInfo .tx-datec-blog-post-commentCount {
+    float: left;
+}
+
+.tx-datec-blog-post-commentInfo .tx-datec-blog-post-latestComment {
+    float: right;
+}
+
+.tx-datec-blog-post-latestComment .tx-datec-blog-comment-creator {
+	display: inline;
+    padding: 0;
+}
+
+.tx-datec-blog-commentForm {
+	background-color: #fff;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.tx-datec-blog-comments {
+    background-color: #fff;
+}
+
+.tx-datec-blog-comment {
+    background-color: #fff;
+    margin-bottom: 5px;
+}
+
+.tx-datec-blog-comment-creator {
+    background-color: #ccc;
+    padding: 5px;
+}
+
+.tx-datec-blog-comment-text {
+    padding: 5px;
+}
+
+.tx-datec-blog-comment-files {
+	background-color: #ddd;
+    padding: 5px;
+}
+
+.tx-datec-blog-comments-replySwitcher {
+    padding-left: 10px;
+}
+
+.tx-datec-blog-tree > ul > li ul,
+.tx-datec-blog-tree > ul > li ul li  {
+	margin: 5px 0 0 5px;
+}
+
+
+ul.tx-datec-blog-tree-items {
+	list-style: none;
+}
+
+li.tx-datec-blog-tree-item > span {
+	cursor: pointer;
+	padding: 3px;
+}
+
+li.tx-datec-blog-tree-item > span:hover,
+li.tx-datec-blog-tree-item > span:focus {
+	background-color: #ff8a14
+}
+
+li.tx-datec-blog-tree-item > span.caret {
+	padding: 0;
+}
+
+li.tx-datec-blog-tree-item > span.caret:hover,
+li.tx-datec-blog-tree-item > span.caret:focus {
+	background-color: transparent;
+}
+
+li.tx-datec-blog-tree-item,
+ul.tx-datec-blog-tree-items {
+    padding: 0;
+}
+
+.tx-datec-blog-keyword-cloud:after {
+	content: " ";
+	clear: both;
+	display: table;
+}
+
+.tx-datec-blog-keyword-cloud > div {
+    float: left;
+    margin-left: 5px;
+}
+
+div.tx-datec-blog-cloud-item {
+	cursor: pointer;
+	padding: 3px;
+}
+
+div.tx-datec-blog-cloud-item:hover,
+div.tx-datec-blog-cloud-item:focus {
+	background-color: #FF8A14
+}
+
+.size-small {
+    font-size: 80%;
+}
+
+.size-normal {
+    font-size: 100%;
+}
+
+.size-medium {
+    font-size: 110%;
+}
+
+.size-large {
+    font-size: 120%;
+}
+
+.size-xlarge {
+    font-size: 140%;
+}
+
+.tx-datec-blog-pagination-page {
+    background-color: #ccc;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.tx-datec-blog-pagination-page:hover {
+    background-color: #ddd;
+}
+
+.tx-datec-blog-pagination-info {
+    margin-bottom: 20px;
+}
+
+.tx-datec-blog-pagination-count {
+	text-align: center;
+}

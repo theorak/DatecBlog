@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-10-16T17:17:17Z" product-name="datec_blog">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.pi_flexform.sheet_title">
+				<source>Datec Blog</source>
+			</trans-unit>
+			<trans-unit id="tt_content.pi_flexform.controllerSelection">
+				<source>Choose Displayform</source>
+			</trans-unit>
+			<trans-unit id="tt_content.pi_flexform.blogController">
+				<source>Blog (Posts and Comments)</source>
+			</trans-unit>
+			<trans-unit id="tt_content.pi_flexform.categoriesController">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tt_content.pi_flexform.archiveController">
+				<source>Archive</source>
+			</trans-unit>
+			<trans-unit id="tt_content.pi_flexform.keywordsController">
+				<source>Keywords</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog.titles.blogController.listPosts">
+				<source>Bloglist</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.titles.categoriesController.listCategories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.titles.archiveController.showArchive">
+				<source>Archive</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.titles.keywordsController.listKeywords">
+				<source>Keywords</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog.labels.backButton">
+				<source>Back</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.previous">
+				<source>Previous</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.next">
+				<source>Next</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.first">
+				<source>First</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.last">
+				<source>Last</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.with">
+				<source>with</source>
+			</trans-unit>		
+			<trans-unit id="tx_datecblog.labels.for">
+				<source>for</source>
+			</trans-unit>	
+			<trans-unit id="tx_datecblog.labels.page">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.replyToComment">
+				<source>Reply</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.showReplies">
+				<source>Show/Hide replies</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.fileType">
+				<target>file types</target>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.fileSize">
+				<target>max. file size</target>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.latestCommentBy">
+				<source>Last comment by: </source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_01">
+				<source>January</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_02">
+				<source>February</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_03">
+				<source>March</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_04">
+				<source>April</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_05">
+				<source>May</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_06">
+				<source>June</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_07">
+				<source>July</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_08">
+				<source>August</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_09">
+				<source>September</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_10">
+				<source>October</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_11">
+				<source>November</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.labels.month_12">
+				<source>December</source>
+			</trans-unit>			
+			
+			<trans-unit id="tx_datecblog.actions.blogController.listPosts">
+				<source>Filter</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.actions.blogController.clearFilter">
+				<source>Clear Filter</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.actions.blogController.showSinglePost">
+				<source>show Post</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.actions.blogController.listComments">
+				<source>Show Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.actions.blogController.createComment">
+				<source>Submit</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog.messages.blogController.noPosts">
+				<source>No blogposts found.</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.noPostId">
+				<source>No 'postId' given.</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.noComments">
+				<source>No comments yet commited. Be the first to comment!</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.commentsDisable_true">
+				<source>Comments are disabled for this blogpost.</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.commentsUsergroups_false">
+				<source>You are not allowed to comment on this post.</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.commentCreator.blocked_true">
+				<source>You are currently not allowed to post!</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.createComment_fileSize_false">
+				<source>One or more of your attached files exceeds the allowed file size!</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.createComment_fileType_false">
+				<source>One or more of your attached files have a forbidden file type!</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.createComment_success">
+				<source>Your comment has been saved.</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.blogController.spamProtection_failed">
+				<source>Spam protection failed! Get of my lawn, Bot!</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.categoriesController.noCategories">
+				<source>No categories found.</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.keywordsController.noKeywords">
+				<source>No Keywords found.</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.messages.keywordsController.noKeywordId">
+				<source>No 'keywordId' given.</source>
+			</trans-unit>
+						
+			<trans-unit id="tx_datecblog.errors.configurationError">
+				<source>There must be something very wrong with the configuration.</source>
+			</trans-unit>	
+			<trans-unit id="tx_datecblog.errors.dbError">
+				<source>There was an error while accessing the database.</source>
+			</trans-unit>		
+			<trans-unit id="tx_datecblog.errors.archiveGeneration">
+				<source>There was an error while building the archive.</source>
+			</trans-unit>				
+
+			<trans-unit id="tx_datecblog_domain_model_post">
+				<source>Blogpost</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post_plural">
+				<source>Blogposts</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post.header">
+				<source>Header</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post.text">
+				<source>Blogtext</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post.image">
+				<source>Image(es)</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post.teaserText">
+				<source>Teaser Text</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post.firstImageInTeaser">
+				<source>Use first image in teaser</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post.category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_post.keywords">
+				<source>Keywords</source>
+			</trans-unit>			
+			<trans-unit id="tx_datecblog_domain_model_post.commentsDisable">
+				<source>Disable Comments</source>
+			</trans-unit>			
+			<trans-unit id="tx_datecblog_domain_model_post.commentsFileupload">
+				<source>Allow File-Uploads in Comments</source>
+			</trans-unit>			
+			<trans-unit id="tx_datecblog_domain_model_post.commentsUsergroups">
+				<source>Allow Usergroup(s) to comment</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog_domain_model_category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_category_plural">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_category.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_category.parent">
+				<source>Parent category</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_category.usergroups">
+				<source>Usergroup(s)</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog_domain_model_keyword">
+				<source>Keyword</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_keyword_plural">
+				<source>Keyword</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_keyword.word">
+				<source>Word</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_keyword.posts">
+				<source>Blogposts</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_keyword.clickCount">
+				<source>Click usage count</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog_domain_model_comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_comment_plural">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_comment.cruserId">
+				<source>Backend User</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_comment.post">
+				<source>Comment to Post:</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_comment.commentCreator">
+				<source>Comment Creator</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_comment.text">
+				<source>Comment Text</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_comment.files">
+				<source>Attached Files</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_comment.parent">
+				<source>Reply to Comment:</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog_domain_model_commentcreator">
+				<source>Comment Creator</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_commentcreator_plural">
+				<source>Comment Creators</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_commentcreator.feUser">
+				<source>Frontend user</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_commentcreator.username">
+				<source>Custom username</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_commentcreator.email">
+				<source>E-Mail address</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_commentcreator.blocked">
+				<source>Block from commenting</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog_domain_model_bloglistCriteria">
+				<source>Criteria for filtering the Bloglist</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_bloglistCriteria.categories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_bloglistCriteria.archivePeriod">
+				<source>Archive Period</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_bloglistCriteria.archivePeriod.from">
+				<source>From</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_bloglistCriteria.archivePeriod.to">
+				<source>To</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog_domain_model_bloglistCriteria.keywords">
+				<source>Keywords</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datecblog.placeholders.comment.text">
+				<source>type your comment text here ...</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.placeholders.commentCreator.email">
+				<source>someone@somewhere.com</source>
+			</trans-unit>
+			<trans-unit id="tx_datecblog.placeholders.commentCreator.username">
+				<source>anonymus</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

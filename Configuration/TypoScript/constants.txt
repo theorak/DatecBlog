@@ -1,0 +1,14 @@
+plugin.tx_datecblog {
+	view {
+	    # cat=plugin.tx_datecblog: advanced/140/layoutRootPath; type=string; label=Layout Root Path: Path to layouts
+	    layoutRootPath = EXT:datec_blog/Resources/Private/Layouts/
+	    # cat=plugin.tx_datecblog: advanced/140/partialRootPath; type=string; label=Partial Root Path: Path to partials
+	    partialRootPath = EXT:datec_blog/Resources/Private/Partials/
+	    # cat=plugin.tx_datecblog: advanced/140/templateRootPath; type=string; label=Template Root Path: Path to templates
+	    templateRootPath = EXT:datec_blog/Resources/Private/Templates/
+	}
+	persistence {
+		# cat=plugin.tx_datecblog//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

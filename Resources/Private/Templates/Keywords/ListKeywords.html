@@ -1,0 +1,17 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<div class="tx-datec-blog-keywords">
+	<f:if condition="{settings.display.showDefaultHeaders}">
+		<h3><f:translate key="tx_datecblog.titles.keywordsController.listKeywords" /></h3>
+	</f:if>
+	<f:if condition="{settings.display.keywords.visual} == 'cloud'">
+		<f:then>
+			<f:render partial="Keywords/KeywordsCloud" arguments="{settings:settings, keywords:keywords}" />
+		</f:then>
+		<f:else>
+			<f:render partial="Keywords/KeywordsList" arguments="{settings:settings, keywords:keywords}" />
+		</f:else>
+	</f:if>
+</div>
+</f:section>

@@ -1,0 +1,40 @@
+ <T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:datec_blog/Resources/Private/Language/locallang.xlf:tt_content.pi_flexform.sheet_title</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <switchableControllerActions>
+            <TCEforms>
+              <label>LLL:EXT:datec_blog/Resources/Private/Language/locallang.xlf:tt_content.pi_flexform.controllerSelection</label>
+              <config>
+                <type>select</type>
+                <items>
+                   <numIndex index="0">
+                     <numIndex index="0">LLL:EXT:datec_blog/Resources/Private/Language/locallang.xlf:tt_content.pi_flexform.blogController</numIndex>
+                     <numIndex index="1">Blog->showBlog;Blog->listPosts;Blog->showSinglePost;Blog->listComments;Blog->createComment</numIndex>
+                   </numIndex>
+                   <numIndex index="1">
+                     <numIndex index="0">LLL:EXT:datec_blog/Resources/Private/Language/locallang.xlf:tt_content.pi_flexform.categoriesController</numIndex>
+                     <numIndex index="1">Categories->listCategories</numIndex>
+                   </numIndex>
+                   <numIndex index="2">
+                     <numIndex index="0">LLL:EXT:datec_blog/Resources/Private/Language/locallang.xlf:tt_content.pi_flexform.archiveController</numIndex>
+                     <numIndex index="1">Archive->showArchive</numIndex>
+                   </numIndex>
+                   <numIndex index="3">
+                     <numIndex index="0">LLL:EXT:datec_blog/Resources/Private/Language/locallang.xlf:tt_content.pi_flexform.keywordsController</numIndex>
+                     <numIndex index="1">Keywords->listKeywords;Keywords->updateClickCount</numIndex>
+                   </numIndex>
+                 </items>
+              </config>
+            </TCEforms>
+          </switchableControllerActions>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

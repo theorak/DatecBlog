@@ -1,0 +1,18 @@
+<f:if condition="{keywords}">
+	<f:then>
+		<div class="tx-datec-blog-tree">
+			<ul class="tx-datec-blog-tree-items {settings.cssClasses.listGroup}">
+				<f:for each="{keywords}" as="keyword">
+					<li class="tx-datec-blog-tree-item {settings.cssClasses.listItem}">
+						<span data-filter-type="keyword" data-filter-value="{keyword.uid}" onclick="DatecBlog.addToFilter(this)">{keyword.word}</span>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:then>
+	<f:else>
+		<div class="info">
+			<f:flashMessages renderMode="div" />
+		</div>
+	</f:else>
+</f:if>

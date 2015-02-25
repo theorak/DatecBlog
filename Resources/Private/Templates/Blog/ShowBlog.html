@@ -1,0 +1,23 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<div class="tx-datec-blog-infobar">
+	<div id="#tx-datec-blog-info" class="tx-datec-blog-info">
+		<f:flashMessages renderMode="div" />
+	</div>
+</div>
+<div class="tx-datec-blog-filterBloglistForm">
+	<input id="tx-datec-blog-pageId" type="hidden" name="tx_datecblog_blog[pageId]" value="{pageId}" />
+	<input id="tx-datec-blog-postId" type="hidden" name="tx_datecblog_blog[postId]" value="{postId}" />
+	<input id="tx-datec-blog-commentText" type="hidden" name="tx_datecblog_blog[comment]" value="{commentText}" />
+	<f:form id="tx-datec-blog-filterBloglistForm" action="listPosts" name="bloglistCriteria" noCacheHash="true" object="{bloglistCriteria}" class="{settings.cssClasses.form}">		
+		<f:render partial="Blog/FilterBloglistFormFields" arguments="{settings:settings, bloglistCriteria:bloglistCriteria}"/>
+	</f:form>
+</div>
+<div class="tx-datec-blog-status">
+	<img id="tx-datec-blog-ajax-loader" src="typo3conf/ext/datec_blog/Resources/Public/Images/ajax-loader.gif" style="display:none;" width="16" height="16" />
+</div>
+<div id="tx-datec-blog-posts" class="tx-datec-blog-posts"></div>
+<div id="tx-datec-blog-post-single" class="tx-datec-blog-post-single"></div>
+	
+</f:section>

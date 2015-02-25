@@ -1,0 +1,40 @@
+<f:if condition="{archive}">
+	<f:then>
+		<div class="tx-datec-blog-tree">
+			<ul class="tx-datec-blog-tree-items {settings.cssClasses.listGroup}" data-tree-type="archive" data-tree-level="0">
+				<f:for each="{archive}" as="archiveYear" key="year">
+					<li class="tx-datec-blog-tree-item {settings.cssClasses.listItem}">
+						<span data-filter-type="archivePeriod" data-filter-value="{f:format.date(date:archiveYear.archivePeriod.from, format:'U')}-{f:format.date(date:archiveYear.archivePeriod.to, format:'U')}-{archiveYear.archivePeriod.type}" onclick="DatecBlog.addToFilter(this)">
+							{year}
+						</span>
+						<span class="tx-datec-blog-tree-switcher caret" data-tree-type="archive" data-tree-level="1-{year}" onclick="DatecBlog.switchTreeLevel(this);"></span>
+						<ul class="tx-datec-blog-tree-items {settings.cssClasses.listGroup}" data-tree-type="archive" data-tree-level="1-{year}" style="display:none;">
+							<f:for each="{archiveYear.months}" as="archiveMonth" key="month">
+								<li class="tx-datec-blog-tree-item {settings.cssClasses.listItem}">
+									<span data-filter-type="archivePeriod" data-filter-value="{f:format.date(date:archiveMonth.archivePeriod.from, format:'U')}-{f:format.date(date:archiveMonth.archivePeriod.to, format:'U')}-{archiveMonth.archivePeriod.type}" onclick="DatecBlog.addToFilter(this)">
+										<f:translate key="tx_datecblog.labels.month_{month}" />
+									</span>
+									<span class="tx-datec-blog-tree-switcher caret" data-tree-type="archive" data-tree-level="2-{year}-{month}" onclick="DatecBlog.switchTreeLevel(this);"></span>
+									<ul class="tx-datec-blog-tree-items {settings.cssClasses.listGroup}" data-tree-type="archive" data-tree-level="2-{year}-{month}" style="display:none;">
+										<f:for each="{archiveMonth.days}" as="archiveDay" key="day">
+											<li class="tx-datec-blog-tree-item {settings.cssClasses.listItem}">
+												<span data-filter-type="archivePeriod" data-filter-value="{f:format.date(date:archiveDay.archivePeriod.from, format:'U')}-{f:format.date(date:archiveDay.archivePeriod.to, format:'U')}-{archiveDay.archivePeriod.type}" onclick="DatecBlog.addToFilter(this)">
+													{day}
+												</span>
+											</li>
+										</f:for>
+									</ul>
+								</li>								
+							</f:for>
+						</ul>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:then>
+	<f:else>
+		<div class="info">
+			<f:flashMessages renderMode="div" />
+		</div>
+	</f:else>
+</f:if>

@@ -1,0 +1,40 @@
+<div id="tx-datec-blog-filters-hidden"><f:if condition="{bloglistCriteria.categories}"><f:for each="{bloglistCriteria.categories}" as="category" iteration="iterator"><input type="hidden" class="tx-datec-blog-bloglistCriteria-categories" id="tx-datec-blog-bloglistCriteria-category-{category.uid}" name="tx_datecblog_blog[bloglistCriteria][categories][{iterator.index}]" value="{category.uid}" /></f:for></f:if><f:if condition="{bloglistCriteria.archivePeriod.from}"><input type="hidden" class="tx-datec-blog-bloglistCriteria-archivePeriod"  id="tx-datec-blog-bloglistCriteria-archivePeriodFrom-{f:format.date(date:bloglistCriteria.archivePeriod.from, format:'U')}" name="tx_datecblog_blog[bloglistCriteria][archivePeriod][from]" value="{f:format.date(date:bloglistCriteria.archivePeriod.from, format:'U')}" /><input type="hidden" class="tx-datec-blog-bloglistCriteria-archivePeriod" id="tx-datec-blog-bloglistCriteria-archivePeriodTo-{f:format.date(date:bloglistCriteria.archivePeriod.to, format:'U')}" name="tx_datecblog_blog[bloglistCriteria][archivePeriod][to]" value="{f:format.date(date:bloglistCriteria.archivePeriod.to, format:'U')}" /><input type="hidden" class="tx-datec-blog-bloglistCriteria-archivePeriod" id="tx-datec-blog-bloglistCriteria-archivePeriodType-{bloglistCriteria.archivePeriod.type}" name="tx_datecblog_blog[bloglistCriteria][archivePeriod][type]" value="{bloglistCriteria.archivePeriod.type}" /></f:if><f:if condition="{bloglistCriteria.keywords}"><f:for each="{bloglistCriteria.keywords}" as="keyword" iteration="iterator"><input type="hidden" class="tx-datec-blog-bloglistCriteria-keywords" id="tx-datec-blog-bloglistCriteria-keyword-{keyword.uid}" name="tx_datecblog_blog[bloglistCriteria][keywords][{iterator.index}]" value="{keyword.uid}" /></f:for></f:if></div>
+
+<div id="tx-datec-blog-filters" class="tx-datec-blog-filters">
+	<f:if condition="{bloglistCriteria.categories}">
+		<f:for each="{bloglistCriteria.categories}" as="category">
+			<div class="tx-datec-blog-filterItem tx-datec-blog-filterItem-category" id="tx-datec-blog-filterItem-category-{category.uid}" data-filter-type="category" data-filter-value="{category.uid}" onclick="DatecBlog.removeFromFilter(this)"><f:translate key="tx_datecblog_domain_model_category" />:&nbsp;{category.name}</div>
+		</f:for>
+	</f:if>
+	<f:if condition="{bloglistCriteria.archivePeriod.from}">
+		<div class="tx-datec-blog-filterItem tx-datec-blog-filterItem-archivePeriod" id="tx-datec-blog-filterItem-archivePeriod-{f:format.date(date:archiveDay.archivePeriod.from, format:'U')}-{f:format.date(date:archiveDay.archivePeriod.to, format:'U')}-{archiveDay.archivePeriod.type}" data-filter-type="archivePeriod" data-filter-value="{f:format.date(date:archiveDay.archivePeriod.from, format:'U')}-{f:format.date(date:archiveDay.archivePeriod.to, format:'U')}-{archiveDay.archivePeriod.type}" onclick="DatecBlog.removeFromFilter(this)">
+			<f:translate key="tx_datecblog_domain_model_bloglistCriteria.archivePeriod" />:&nbsp;
+			<f:if condition="{bloglistCriteria.archivePeriod.type} == 'MONTH'">
+				<f:then>
+					<f:if condition="{bloglistCriteria.archivePeriod.type} == 'DAY'">
+						<f:then>				
+							<f:format.date format="{settings.display.dateFormat}">{bloglistCriteria.archivePeriod.from}</f:format.date>
+						</f:then>
+						<f:else>
+							<f:translate key="tx_datecblog.labels.month_{f:format.date(format='m',date:bloglistCriteria.archivePeriod.from)}" />
+						</f:else>
+					</f:if>
+				</f:then>
+				<f:else>
+					<f:format.date format="Y">{bloglistCriteria.archivePeriod.from}</f:format.date>
+				</f:else>
+			</f:if>
+		</div>
+	</f:if>
+	<f:if condition="{bloglistCriteria.keywords}">
+		<f:for each="{bloglistCriteria.keywords}" as="keyword">
+			<div  class="tx-datec-blog-filterItem tx-datec-blog-filterItem-keyword" id="tx-datec-blog-filterItem-keyword-{keyword.uid}" data-filter-type="keyword" data-filter-value="{keyword.uid}" onclick="DatecBlog.removeFromFilter(this)"><f:translate key="tx_datecblog_domain_model_keyword" />:&nbsp;{keyword.word}</div>
+		</f:for>
+	</f:if>
+</div>
+<div class="{settings.cssClasses.formFieldWrap}">
+	<button type="button" value="{f:translate(key:'tx_datecblog.actions.blogController.listPosts')}" class="{settings.cssClasses.formButton}" onclick="DatecBlog.listPosts()"><f:translate key="tx_datecblog.actions.blogController.listPosts" /></button>
+</div>
+<div class="{settings.cssClasses.formFieldWrap}">
+	<button type="button" value="{f:translate(key:'tx_datecblog.actions.blogController.listPosts')}" class="{settings.cssClasses.formButton}" onclick="DatecBlog.clearFilter()"><f:translate key="tx_datecblog.actions.blogController.clearFilter" /></button>
+</div>

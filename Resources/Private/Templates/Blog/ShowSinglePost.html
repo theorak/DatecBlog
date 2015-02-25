@@ -1,0 +1,32 @@
+<f:render partial="Blog/PostSingle" arguments="{settings:settings, post:post}"/>
+<f:if condition="{post.commentsDisable}">
+	<f:then>
+		<div class="typo3-messages">
+			<div class="typo3-message message-warning">
+				<f:translate key="tx_datecblog.messages.blogController.commentsDisable_true" />
+			</div>		
+		</div>
+	</f:then>
+	<f:else>
+		<f:if condition="{commentAccess}">
+			<f:then>
+				<div class="tx-datec-blog-commentForm">
+					<f:form id="tx-datec-blog-commentForm" action="createComment" name="comment" noCacheHash="true" enctype="multipart/form-data" object="{comment}" class="{settings.cssClasses.form}">		
+						<f:render partial="Blog/CommentFormFields" arguments="{settings:settings, allowedFileSizeDisplay:allowedFileSizeDisplay, post:post, comment:comment, feUser:feUser, duplicant1:duplicant1}"/>
+					</f:form>
+				</div>
+			</f:then>
+			<f:else>			
+				<div class="typo3-messages">
+					<div class="typo3-message message-warning">
+						<f:translate key="tx_datecblog.messages.blogController.commentsUsergroups_false" />
+					</div>
+				</div>		
+			</f:else>
+		</f:if>
+		<div class="tx-datec-blog-status">
+			<img id="tx-datec-blog-ajax-loader-comments" src="typo3conf/ext/datec_blog/Resources/Public/Images/ajax-loader.gif" style="display:none;" width="16" height="16" />
+		</div>
+		<div id="tx-datec-blog-comments" class="tx-datec-blog-comments"></div>
+	</f:else>
+</f:if>

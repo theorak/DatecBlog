@@ -1,0 +1,28 @@
+<div class="tx-datec-blog-pagination pagination-{position}">
+	<f:if condition="{pagination.first}">
+		<f:if condition="{pagination.first} != {pagination.previous}">
+			<span onclick="DatecBlog.listPostsOnPage({pagination.first})" class="tx-datec-blog-pagination-page pagination-first"><f:translate key="tx_datecblog.labels.first" /></span>
+		</f:if>
+	</f:if>
+	<f:if condition="{pagination.previous}">
+		<span onclick="DatecBlog.listPostsOnPage({pagination.previous})" class="tx-datec-blog-pagination-page pagination-previous"><f:translate key="tx_datecblog.labels.previous" /></span>
+	</f:if>
+	<f:for each="{pagination.pages}" as="page" key="pageIndex" iteration="iterator">
+		<span onclick="DatecBlog.listPostsOnPage({iterator.cycle})" class="tx-datec-blog-pagination-page">{iterator.cycle}</span>
+	</f:for>
+	<f:if condition="{pagination.next}">
+		<span onclick="DatecBlog.listPostsOnPage({pagination.next})" class="tx-datec-blog-pagination-page pagination-next"><f:translate key="tx_datecblog.labels.next" /></span>
+	</f:if>
+	<f:if condition="{pagination.last}">
+		<f:if condition="{pagination.last} != {pagination.next}">
+			<span onclick="DatecBlog.listPostsOnPage({pagination.last})" class="tx-datec-blog-pagination-page pagination-last"><f:translate key="tx_datecblog.labels.last" /></span>
+		</f:if>
+	</f:if>
+</div>
+<f:if condition="{position} == 'bottom'">
+	<div class="tx-datec-blog-pagination-info">
+		<div class="tx-datec-blog-pagination-count">
+			<f:translate key="tx_datecblog.labels.page" />&nbsp;{pagination.current}/{pagination.pagesCount},&nbsp;<f:translate key="tx_datecblog.labels.for" />&nbsp;{pagination.resultsCount}&nbsp;<f:translate key="tx_datecblog_domain_model_post_plural" />
+		</div>
+	</div>
+</f:if>

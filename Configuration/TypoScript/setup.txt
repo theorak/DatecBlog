@@ -1,0 +1,113 @@
+page {
+	includeCSS {
+		datec_blog_style = EXT:datec_blog/Resources/Public/Css/style.css
+	}
+	includeJSFooterlibs  {
+    	datec_blog_script = EXT:datec_blog/Resources/Public/JavaScript/datec_blog_script.js
+    }
+}
+
+
+ajaxCallDatecBlog = PAGE
+ajaxCallDatecBlog {
+typeNum = 1660
+	config.disableAllHeaderCode = 1
+	config.metaCharset = UTF-8
+    10 = COA
+    10 < tt_content.list.20.datecblog_blog
+}
+
+plugin.tx_datecblog_blog {
+	view {
+		templateRootPath = {$plugin.tx_datecblog.view.templateRootPath}
+		partialRootPath = {$plugin.tx_datecblog.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_datecblog.view.layoutRootPath}
+	}
+	persistence {
+		classes {
+		    \Date\DatecBlog\Domain\Model\Post {
+		        mapping {
+		            columns {
+		            	crdate.mapOnProperty = crdate
+		            	starttime.mapOnProperty = starttime
+		            	endtime.mapOnProperty = endtime        		            	
+		            }  
+		        }
+		    }
+		    \Date\DatecBlog\Domain\Model\Commment {
+		        mapping {
+		            columns {
+		            	pid.mapOnProperty = pid
+		            	cruser_id.mapOnProperty = cruserId 
+		            	crdate.mapOnProperty = crdate   		            	
+		            }  
+		        }
+		    }
+		}
+		commentsStoragePid = 20
+		storagePid = {$plugin.tx_datecblog.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+    settings {
+        storagePid = {$plugin.tx_datecblog.persistence.storagePid}  
+        commentsStoragePid = {$plugin.tx_datecblog.persistence.storagePid} 
+        mail {
+        	internMailFrom = blog@no-reply.com
+        	internMailFromName = Datec Blog
+        }
+        maxFileSize = 4000000
+        allowedFileTypes = pdf,zip,png,jpg,jpeg,gif,txt,doc,docx
+        display {
+        	dateFormat = d.m.Y
+        	showDefaultHeaders = 1
+        	keywords {
+        		limit = 0
+        		order = usage
+        		visual = cloud
+        	}
+        	posts {
+        		dateFormat = d.m.Y - H:i
+        		teaserTextLength = 40
+        		sorting = crdate
+        		sortingDirection = DESC
+        		pagination {
+        		 	enable = 1
+        		 	itemsPerPage = 15
+        		 	maxPages = 0
+        		 	top = 0
+        		 	bottom = 1
+        		}
+        	}
+        	comments {
+        		dateFormat = d.m.Y - H:i        		
+        		sorting = crdate
+        		sortingDirection = DESC
+        	}
+        	feUser {
+        	  # string, might be username, fistname_lastname, firstname, lastname
+		      nameFormat = username
+		    }
+        }
+        cssClasses {
+        	form = form form-inline
+        	formLabel = control-label        	
+        	formField = form-control
+        	formFieldWrap = form-group
+        	# will additionally wrap the form input fields without the label when set, make sure to set the end tag
+			formFieldInnerWrapStartTag = 
+			formFieldInnerWrapEndTag = 
+			formButton = btn btn-default
+			listGroup = 
+			listItem = 
+        }
+    }
+}
+
+module.tx_datecblog {
+    settings < plugin.tx_datecblog.settings
+    persistence < plugin.tx_datecblog.persistence
+    view < plugin.tx_datecblog.view
+}
