@@ -20,6 +20,7 @@ Fixed a minor bug from last update and cleaned up the code.
 [DESIGN] Icons for plugin and all entities added
 [FEATURE] Pagination for blogposts list
 [QUALITY] All internal code was cleaned up and streamlined for future implementations
+[FEATURE] Finished Documentation
 
 Version 1.0.2
 =============
