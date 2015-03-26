@@ -1,0 +1,85 @@
+﻿.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+.. include:: ../Includes.txt
+
+
+Target group: **Administrators**
+
+
+.. only:: html
+
+	.. contents:: Within this page
+		:local:
+		:depth: 3
+
+.. _configuration:
+
+Configuration Reference
+=======================
+
+This section describes all options aviable for Datec Blog via TypoScript setup. To change these options please add a new extension template to your ROOT template.
+
+.. _configuration-typoscript:
+
+
+Minimal configuration
+---------------------
+
+Upon installation, please add the static extension template 'Datec Blog' to your ROOT template (Web > Template > edit root page template > Includes > select static template from extensions) and set at least the following options:
+
+.. code-block:: typoscript
+
+	# PID of your storage folder for comments and comment creators
+	plugin.tx_datecblog_blog.settings.commentsStoragePid = 123
+
+	# Valid email address to dispatch automatic mails from
+	plugin.tx_datecblog_blog.settings.mail.internMailFrom = blog@no-reply.com
+
+
+General configuration
+---------------------
+
+plugin.tx_datecblog_blog.
+
+.. container:: ts-properties
+
+	================================================    =============   ==============================================================================  ===========
+	Property                                            Data type       Description                                                                     Default
+	================================================    =============   ==============================================================================  ===========
+	view.templateRootPath                               string          Constant, path to template files if you wish to use your own.                   EXT:datec_blog/Resources/Private/Templates/
+	view.partialRootPath                                string          Constant, path to partial template files if you wish to use your own.           EXT:datec_blog/Resources/Private/Partials/
+	view.layoutRootPath                                 string          Constant, path to layout files if you wish to use your own.                     EXT:datec_blog/Resources/Private/Layouts/
+	settings.commentsStoragePid                         int             System folder for comments and comment creators.
+	settings.mail.internMailFrom                        string          E-mail address for automatic notification Mails [FROM].                         blog@no-reply.com
+	settings.mail.internMailFromName                    string          Name to display for automatic notification Mails [FROM-NAME].                   Datec Blog
+	settings.maxFileSize                                string          Maximum file size in bytes on comments with file attachments.                   4000000
+	settings.allowedFileTypes                           string          File types allowed, listing comma-separated, on comments with file upload.      pdf,zip,png,jpg,jpeg,gif,txt,doc,docx
+	settings.display.dateFormat                         string          Date format to display dates, must be compatible to date() PHP function.        d.m.Y
+	settings.display.showDefaultHeaders                 boolean         Display Titles about each plugin (e.g. 'Categories').                           1
+	settings.display.keywords.limit                     string          Limit keyword results to this number, set 0 to disable.                         0
+	settings.display.keywords.order                     string          Order keywords by 'date', 'usage' or 'sorting'.                                 usage
+	settings.display.keywords.visual                    string          Display keywords as 'cloud' or 'list'.                                          cloud
+	settings.display.posts.dateFormat                   string          Like 'settings.display.dateFormat' for posts only.                              d.m.Y - H:i
+	settings.display.posts.teaserTextLength             string          Blogposts (without teasertext) will be cut of at this length in list view.      40
+	settings.display.posts.sorting                      string          Column name for SQL-query to sort blogposts by.			                        crdate
+	settings.display.posts.sortingDirection             string          Sorting direction for SQL-query to sort blogposts by.                           DESC
+	settings.display.posts.pagination.enable            boolean         Enable pagination for bloglist.                                                 1
+	settings.display.posts.pagination.itemsPerPage      int             Blogposts per page.                                                             15
+	settings.display.posts.pagination.maxPages          int             Maximum Pages displayed, 0 disables this. (reduces visible content!)            0
+	settings.display.posts.pagination.top               boolean         Pagination should appear above the bloglist.                                    0
+	settings.display.posts.pagination.bottom            boolean         Pagination should appear below the bloglist.                                    1
+	settings.display.comments.dateFormat                string          Like 'settings.display.dateFormat' for comments only.                           d.m.Y - H:i
+	settings.display.comments.sorting                   string          Sorting direction for SQL-query to sort comments by.                            crdate
+	settings.display.comments.sortingDirection          string          Sorting direction for SQL-query to sort comments by.                            DESC
+	settings.display.feUser.nameFormat                  string          Display user with 'username', 'firstname_lastname', 'firstname' or 'lastname'.  username
+	settings.cssClasses.form                            string          CSS class for forms. (All CSS-settings are suggested Bootstrap default)         form form-inline
+	settings.cssClasses.formLabel                       string          CSS class for form labels.                                                      control-label
+	settings.cssClasses.formField                       string          CSS class for form fields.                                                      form-control
+	settings.cssClasses.formFieldWrap                   string          CSS class to wrap around fields + label.                                        form-group
+	settings.cssClasses.formButton                      string          CSS class for form buttons.                                                     btn btn-default
+	settings.cssClasses.listGroup                       string          CSS class for list groups ('ul').
+	settings.cssClasses.listItem                        string          CSS class for list items('li').
+	================================================    =============   ==============================================================================  ===========

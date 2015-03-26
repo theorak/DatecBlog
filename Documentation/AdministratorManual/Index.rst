@@ -23,22 +23,21 @@ Installation
 ------------
 
 1) Download and install the extension via the extension manager (extKey: datec_blog).
-2) Add one storage folder for comments and comment creators, note down the PID of this folder.
+2) Add one storage folder for comments and comment creators, note down the page id (PID) of this folder.
 3) Check the Configuration section of this manual for the required configuration and follow the steps there.
+4) Insert the main plugin and optional ones as described below.
 
-The output is managed via content modules. This means easy and flexible usage.
+Insert plugin
+-------------
 
-1. Insert a content element, choose "Plugins" -> "General Plugin"
+1) Insert a content element, choose "Plugins" -> "General Plugin"
 
 .. figure:: ../Images/AdministratorManual/plugin.png
 	:width: 652px
 	:alt: insert plugin
 
 
-Insert plugin
--------------
-
-Choose one or more of the display forms to setup your blog.
+2) Choose one of the display forms to setup your blog.
 
 .. figure:: ../Images/AdministratorManual/modules.png
 	:width: 539px
@@ -47,4 +46,22 @@ Choose one or more of the display forms to setup your blog.
 	Modules
 
 
+Blog
+^^^^
 
+Displays a the bloglist with filter and single view of posts with comments. This Plugin is required.
+
+Categories
+^^^^^^^^^^
+
+Displays Categories as a tree, clickable for the filter.
+
+Archive
+^^^^^^^
+
+Generates an Archive from all Blogposts, displayed as tree of year - month - day, clickable for the filter.
+
+Keywords
+^^^^^^^^
+
+Displays Keywords as cloud or list, depending on your plugin TypoScript configuration, clickable for the filter.
