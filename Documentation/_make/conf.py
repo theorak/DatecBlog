@@ -73,7 +73,7 @@ today_fmt = '%Y-%m-%d %H:%M'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_make']
+exclude_patterns = ['_make', 'Localization.de_DE.tmpl/Index.rst']
 exclude_trees = ['_make']
 
 # The reST default role (used for this markup: `text`) to use for all

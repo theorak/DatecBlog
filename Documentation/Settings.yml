@@ -28,4 +28,12 @@ conf.py:
     t3editors:
     - http://docs.typo3.org/typo3cms/EditorsTutorial/
     - null
+  extensions:
+  - sphinx.ext.extlinks
+  - sphinx.ext.ifconfig
+  - sphinx.ext.intersphinx
+  - sphinx.ext.todo
+  - t3sphinx.ext.t3extras
+  - t3sphinx.ext.t3tablerows
+  - t3sphinx.ext.targets
 ...

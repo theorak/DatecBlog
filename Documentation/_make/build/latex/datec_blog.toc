@@ -1,0 +1,26 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}What does it do?}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Users manual}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Editors - Create a category}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Editors - Create a blogpost}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Editors - Create a keyword}{4}{section.2.3}
+\contentsline {section}{\numberline {2.4}Editors - Edit/Inspect a comment creator}{5}{section.2.4}
+\contentsline {section}{\numberline {2.5}Users - Bloglist and Filter}{5}{section.2.5}
+\contentsline {section}{\numberline {2.6}Users - Blogpost and Comments}{7}{section.2.6}
+\contentsline {section}{\numberline {2.7}Users/Editors - Advanced Blog Usage}{7}{section.2.7}
+\contentsline {chapter}{\numberline {3}Administrator Manual}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Requirements}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Installation}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Insert plugin}{9}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Blog}{9}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Categories}{9}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Archive}{9}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Keywords}{11}{subsection.3.3.4}
+\contentsline {chapter}{\numberline {4}Configuration Reference}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Minimal configuration}{13}{section.4.1}
+\contentsline {section}{\numberline {4.2}General configuration}{13}{section.4.2}
+\contentsline {chapter}{\numberline {5}Known Problems}{15}{chapter.5}
+\contentsline {chapter}{\numberline {6}To-Do List}{17}{chapter.6}
+\contentsline {chapter}{\numberline {7}Change Log}{19}{chapter.7}
+\contentsline {chapter}{\numberline {8}FAQ}{21}{chapter.8}
+\contentsline {section}{\numberline {8.1}How to change the layout/design?}{21}{section.8.1}
