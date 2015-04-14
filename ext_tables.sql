@@ -8,7 +8,7 @@ CREATE TABLE tx_datecblog_domain_model_post (
 	
 	header varchar(255) DEFAULT '' NOT NULL,
 	text text NOT NULL,
-	images text DEFAULT '' NOT NULL,
+	images text DEFAULT NULL,
 	teaser_text text NOT NULL,
 	first_image_in_teaser tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	category int(11) DEFAULT '0' NOT NULL,	

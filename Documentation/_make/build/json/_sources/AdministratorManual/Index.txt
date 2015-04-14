@@ -38,18 +38,20 @@ Insert plugin
 
 1) Insert a content element, choose "Plugins" -> "General Plugin"
 
-.. figure:: ../Images/AdministratorManual/ExtensionManager.png
-	:width: 652px
+.. figure:: ../Images/plugin_01.jpg
+	:width: 700px
 	:alt: insert plugin
+
+	Inserting content element of type "Plugin"
 
 
 2) Choose one of the display forms to setup your blog.
 
-.. figure:: ../Images/AdministratorManual/ExtensionManager.png
-	:width: 539px
+.. figure:: ../Images/plugin_02.jpg
+	:width: 700px
 	:alt: modules
 
-	Modules
+	Choosing a display form
 
 
 Blog
