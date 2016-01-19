@@ -85,10 +85,10 @@ class KeywordsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			if (count($keywordsResult)) {
 				$this->view->assign('keywords', $keywordsResult);
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.keywordsController.noKeywords',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.keywordsController.noKeywords',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}
 		
 		$this->view->assign('settings', $this->settings);
@@ -112,10 +112,10 @@ class KeywordsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			
 				$this->keywordRepository->update($keywordResult);
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.keywordsController.noKeywordId',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.keywordsController.noKeywordId',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}	
 	}
 	

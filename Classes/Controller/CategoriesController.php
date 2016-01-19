@@ -77,10 +77,10 @@ class CategoriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 			if (count($categoryTreeResult)) {				
 				$this->view->assign('categoryTree', $categoryTreeResult);
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.categoriesController.noCategories',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.categoriesController.noCategories',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}		
 		
 		$this->view->assign('feUser', $this->feUser);

@@ -7,10 +7,10 @@
 			<div class="tx-datec-blog-post-header">					
 				<h2>{post.header}</h2>
 			</div>
-			<f:if condition="{post.firstImageInTeaser}">
-				<f:if condition="{post.images}">			
+			<f:if condition="{post.images}">	
+				<f:if condition="{post.firstImageInTeaser}">		
 					<f:for each="{post.images}" as="image" iteration="iterator">
-						<f:if condition="{iterator.index} < 1">
+						<f:if condition="{iterator.isFirst}">
 							<div class="tx-datec-blog-post-teaserImage">
 								<a rel="lightbox[{image.uid}]" class="lightbox" href="{f:uri.image(src:'{image.uid}', treatIdAsReference:'1')}">
 									<f:image src="{image.uid}" title="{image.title}" width="250" height="250" alt="{image.alternative}" treatIdAsReference="1" />
@@ -30,10 +30,10 @@
 			</div>
 			<f:if condition="{post.images}">
 				<div class="tx-datec-blog-post-images">			
-					<f:for each="{post.images}" as="image" iteration="iterator">
-							<a rel="lightbox[{image.uid}]" class="lightbox" href="{f:uri.image(src:'{image.uid}', treatIdAsReference:'1')}">
-								<f:image src="{image.uid}" title="{image.title}" width="250" height="250" alt="{image.alternative}" treatIdAsReference="1" />
-							</a>
+					<f:for each="{post.images}" as="image" iteration="iterator">					
+						<a rel="lightbox[{image.uid}]" class="lightbox" href="{f:uri.image(src:'{image.uid}', treatIdAsReference:'1')}">
+							<f:image src="{image.uid}" title="{image.title}" width="250" height="250" alt="{image.alternative}" treatIdAsReference="1" />
+						</a>
 					</f:for>					
 				</div>
             </f:if>

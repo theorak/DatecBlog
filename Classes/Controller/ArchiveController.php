@@ -73,13 +73,13 @@ class ArchiveController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				if (count($archive)) {
 					$this->view->assign('archive', $archive);
 				} else {							
-					$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.archiveGeneration',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+					$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.archiveGeneration',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				}
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}
 		
 		$this->view->assign('settings', $this->settings);
