@@ -51,11 +51,14 @@ plugin.tx_datecblog_blog.
 	view.templateRootPath                               string          Konstante, Pfad zu den Template Dateien, ändern um eigene zu verwenden.         EXT:datec_blog/Resources/Private/Templates/
 	view.partialRootPath                                string          Konstante, Pfad zu den Teil-Template Dateien, ändern um eigene zu verwenden.    EXT:datec_blog/Resources/Private/Partials/
 	view.layoutRootPath                                 string          Konstante, Pfad zu den Layout Dateien, ändern um eigene zu verwenden.           EXT:datec_blog/Resources/Private/Layouts/
-	settings.commentsStoragePid                         int             Systemordner, in welchem Kommentare und Kommentarersteller gespeichert werden.
 	settings.mail.internMailFrom                        string          E-Mail Adresse zum Versand automatischer Benachrichten (VON).                   blog@no-reply.com
 	settings.mail.internMailFromName                    string          E-Mail Adresse zum Versand automatischer Benachrichten (VON-NAME).              Datec Blog
 	settings.maxFileSize                                string          Maximale Dateigröße in bytes für Kommentare mit Dateianhängen.                  4000000
 	settings.allowedFileTypes                           string          Erlaubte Dateitypen, kommaseparierte Liste, für Kommentare mit Dateianhängen.   pdf,zip,png,jpg,jpeg,gif,txt,doc,docx
+	settings.comments.storagePid                        int             System Ordner für Kommentare und Kommentarersteller.
+	settings.posts.storagePid                           int             System Ordner für Blog-Einträge.
+	settings.categories.storagePid                      int             System Ordner für Kategories.
+	settings.keywords.storagePid                        int             System Ordner für Schlüsselwörter.
 	settings.display.dateFormat                         string          Datmsformat zur Datumsanzeige, kompatiebel zu date() PHP Funktion.              d.m.Y
 	settings.display.showDefaultHeaders                 boolean         Zeige Standard-Titel über jedem Plugin an (e.g. 'Kategorien').                  1
 	settings.display.keywords.limit                     string          Limitiere Schlüsselwörter Liste, wähle 0 zum deaktivieren.                      0

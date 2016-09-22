@@ -37,6 +37,11 @@ class ArchiveController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * $extKey
 	 */
 	protected $extKey;
+
+    /**
+     * $feUser
+     */
+    protected $feUser;
 	
 	/**
 	 * $postRepository
@@ -45,6 +50,14 @@ class ArchiveController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @inject
 	 */
 	protected $postRepository;
+
+    /**
+     * $categoryRepository
+     *
+     * @var \Datec\DatecBlog\Domain\Repository\CategoryRepository
+     * @inject
+     */
+    protected $categoryRepository;
 	
 	/**
 	 * initialize current action
@@ -52,9 +65,9 @@ class ArchiveController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	public function initializeAction() {
 		$this->extKey = $this->request->getControllerExtensionKey();
-		
-		
-	}
+        $this->feUser = $this->getFeUser();
+
+    }
 	
 	/**
 	 * action showArchive
@@ -62,24 +75,35 @@ class ArchiveController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return void
 	 */
 	public function showArchiveAction() {
+        $feUserGroups = array();
+
 		$postsResult = $this->postRepository->findAll(array(
 				'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-				));
+				), $this->settings['posts']['storagePid']);
 			
 		if ($postsResult) {
 			$postsResult->toArray();
 			if (count($postsResult)) {
-				$archive = $this->generateArchive($postsResult);
+			    if ($this->feUser) {
+                    $feUserGroups = explode(',', $GLOBALS['TSFE']->gr_list); // use the hierarchical access list
+                }
+
+                $categoriesResult = $this->categoryRepository->findWithChildren(0, $feUserGroups, FALSE, $this->settings['categories']['storagePid']); // get allowed Categories
+                if (!$categoriesResult) {
+                    $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+                }
+
+				$archive = $this->generateArchive($postsResult, $categoriesResult);
 				if (count($archive)) {
 					$this->view->assign('archive', $archive);
 				} else {							
-					$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.archiveGeneration',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+					$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.archiveGeneration',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				}
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}
 		
 		$this->view->assign('settings', $this->settings);
@@ -89,12 +113,18 @@ class ArchiveController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * generates an array for the year, month and day of post's dates
 	 * 
 	 * @param array $posts
-	 * return array $archive
+     * @param array $categories
+	 * @return array $archive
 	 */
-	private function generateArchive($posts) {
+	private function generateArchive($posts, $categories) {
 		$archive = array();
 		
 		foreach ($posts as $post) {
+            // skip post when not in allowed categories
+            if (!in_array($post->getCategory(), $categories)) {
+                continue;
+            }
+
 			$postDate = ($post->getStarttime() != 0) ? $post->getStarttime() : $post->getCrdate();
 			
 			$year = date('Y', $postDate);
@@ -134,6 +164,19 @@ class ArchiveController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		
 		return $archive;
 	}
+
+    /**
+     * look for current frontend user
+     *
+     * @return array $feUser or boolean FALSE if no user found
+     */
+    private function getFeUser() {
+        if(isset($GLOBALS['TSFE']->fe_user->user)) {
+            return $GLOBALS['TSFE']->fe_user->user;
+        }
+
+        return FALSE;
+    }
 	
 }
 ?>

@@ -23,13 +23,13 @@ Voraussetzungen
 ---------------
 
 .. caution::
-	Sie müssen selbst das jQuery JavaScript Framework global geladen haben, weil das Frontend Plugin Funktionalitäten von jQuery nutzt.
+	Auf der Homepage muss jQuery JavaScript Framework global geladen seil, weil das Frontend Plugin jQuery nutzt.
 
 Installation
 ------------
 
 1) Laden und installieren Sie die Erweiterung über den Erweiterungsmanager (extKey: datec_blog).
-2) Fügen Sie eine Seite vom Typ "Systemordner" für Kommentare und Kommentarersteller der Homepage hinzu, notieren Sie sich die Seiten-Id (PID) dieses Ordners.
+2) Fügen Sie eine Seite vom Typ "Systemordner" für die Blog-Inhalte hinzu, oder besser jeweils einen für Blog-Einträge, Kategorien, Schlüsselwörter und Kommentare. Notieren Sie sich die Seiten-Id/s (PID) des/der Ordners.
 3) Sehen Sie sich das Kapitel "Konfiguration" dieses Dokuments an und folgen Sie den Schritten zur minimalen Konfiguration.
 4) Fügen Sie das Haupt Plugin (DatecBlog - Blog) und optionale Plugins mit folgenden Schritten auf einer beliebigen Seite ein.
 

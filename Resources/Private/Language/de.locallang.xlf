@@ -72,7 +72,7 @@
 				<target>max. Dateigröße</target>
 			</trans-unit>
 			<trans-unit id="tx_datecblog.labels.latestCommentBy">
-				<target>Neuster Kommentar von: </target>
+				<target>Letzter Kommentar von: </target>
 			</trans-unit>
 			<trans-unit id="tx_datecblog.labels.month_01">
 				<target>Januar</target>
@@ -134,7 +134,7 @@
 				<target>Keine 'postId' angegeben.</target>
 			</trans-unit>
 			<trans-unit id="tx_datecblog.messages.blogController.noComments">
-				<target>Noch keine Kommentare vorhanden. Schreibe als erster ein neues!</target>
+				<target>Noch keine Kommentare vorhanden. Schreibe als erster einen neuen!</target>
 			</trans-unit>
 			<trans-unit id="tx_datecblog.messages.blogController.commentsDisable_true">
 				<target>Kommentare wurden für diesen Blogeintrag deaktiviert.</target>

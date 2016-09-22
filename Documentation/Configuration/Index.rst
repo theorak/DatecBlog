@@ -31,8 +31,21 @@ Upon installation, please add the static extension template 'Datec Blog' to your
 
 .. code-block:: ts
 
-	# PID of your storage folder for comments and comment creators
-	plugin.tx_datecblog_blog.settings.commentsStoragePid = 123
+	# PID(s) of your storage folder(s) for blog content
+	plugin.tx_datecblog_blog.settings {
+	  comments {
+	    storagePid = 123
+	  }
+	  posts {
+	    storagePid = 123
+	  }
+	  keywords {
+	    storagePid = 123
+	  }
+	  categories {
+	    storagePid = 123
+	  }
+	}
 
 	# Valid email address to dispatch automatic mails from
 	plugin.tx_datecblog_blog.settings.mail.internMailFrom = blog@no-reply.com
@@ -51,11 +64,14 @@ plugin.tx_datecblog_blog.
 	view.templateRootPath                               string          Constant, path to template files if you wish to use your own.                   EXT:datec_blog/Resources/Private/Templates/
 	view.partialRootPath                                string          Constant, path to partial template files if you wish to use your own.           EXT:datec_blog/Resources/Private/Partials/
 	view.layoutRootPath                                 string          Constant, path to layout files if you wish to use your own.                     EXT:datec_blog/Resources/Private/Layouts/
-	settings.commentsStoragePid                         int             System folder for comments and comment creators.
 	settings.mail.internMailFrom                        string          E-mail address for automatic notification Mails [FROM].                         blog@no-reply.com
 	settings.mail.internMailFromName                    string          Name to display for automatic notification Mails [FROM-NAME].                   Datec Blog
 	settings.maxFileSize                                string          Maximum file size in bytes on comments with file attachments.                   4000000
 	settings.allowedFileTypes                           string          File types allowed, listing comma-separated, on comments with file upload.      pdf,zip,png,jpg,jpeg,gif,txt,doc,docx
+	settings.comments.storagePid                        int             System folder for comments and comment creators.
+	settings.posts.storagePid                           int             System folder for posts.
+	settings.categories.storagePid                      int             System folder for categories.
+	settings.keywords.storagePid                        int             System folder for keywords.
 	settings.display.dateFormat                         string          Date format to display dates, must be compatible to date() PHP function.        d.m.Y
 	settings.display.showDefaultHeaders                 boolean         Display Titles about each plugin (e.g. 'Categories').                           1
 	settings.display.keywords.limit                     string          Limit keyword results to this number, set 0 to disable.                         0

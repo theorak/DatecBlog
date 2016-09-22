@@ -56,10 +56,10 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all objects
 	 *
 	 * @param array $newOrder array of 'COLUMNNAME' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_* (optional)
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array The query result object or an array if $returnRawQueryResult is TRUE
 	 */
-	public function findAll($newOrder = array(), $ingoreEnableFields = FALSE) {
+	public function findAll($newOrder = array(), $ignoreEnableFields = FALSE) {
 		if (!empty($newOrder)) {
 			$this->defaultOrderings = $newOrder;
 		}
@@ -67,8 +67,8 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();	
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -80,15 +80,15 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds an object matching the given identifier
 	 *
 	 * @param int $uid The identifier of the object to find
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findByUid($uid, $ingoreEnableFields = FALSE) {
+	public function findByUid($uid, $ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -116,10 +116,10 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param int $parentId The parent object to search by
 	 * @param int $postId assigned post identificator for this objects
 	 * @param array array of 'COLUMNNAME' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_* (optional)
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return array List of all matching objects
 	 */
-	public function findByParentAndPost($parentId, $postId, $newOrder = array(), $ingoreEnableFields = FALSE) {
+	public function findByParentAndPost($parentId, $postId, $newOrder = array(), $ignoreEnableFields = FALSE) {
 		$constraints = array();
 		
 		if (!empty($newOrder)) {
@@ -129,8 +129,8 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();
 	
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -147,17 +147,17 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param int $parentId The parent object to search by
 	 * @param int $postId assigned post identificator for this objects
 	 * @param array $newOrder array of 'COLUMNNAME' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_* (optional)
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return array The cascading array of children, by parent objects
 	 */
-	function findWithChildrenByPost($parentId, $postId, $newOrder = array(), $ingoreEnableFields = FALSE) {
-		$children = $this->findByParentAndPost($parentId, $postId, $newOrder, $ingoreEnableFields);
+	function findWithChildrenByPost($parentId, $postId, $newOrder = array(), $ignoreEnableFields = FALSE) {
+		$children = $this->findByParentAndPost($parentId, $postId, $newOrder, $ignoreEnableFields);
 		if (count($children) > 0) {
 			$i = 0;
 			foreach($children as $child) {
 				$childUid = $child->getUid();
 				$childrenArray[$i]['comment'] = $child;
-				$childrenArray[$i]['children'] = $this->findWithChildrenByPost($childUid, $postId, $newOrder, $ingoreEnableFields);
+				$childrenArray[$i]['children'] = $this->findWithChildrenByPost($childUid, $postId, $newOrder, $ignoreEnableFields);
 				$i++;
 			}
 		} else {
@@ -171,10 +171,10 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * finds latest objects by post id
 	 *
 	 * @param integer $postId assigned post identificator for this objects
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional) 
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array The query result object or an array if $returnRawQueryResult is TRUE
 	 */
-	public function findLatestsByPost($postId, $ingoreEnableFields = FALSE) {	
+	public function findLatestsByPost($postId, $ignoreEnableFields = FALSE) {
 		// this is the default ordering, but make sure we get the latest first
 		$this->defaultOrderings = array(
 			'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
@@ -183,8 +183,8 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();	
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);

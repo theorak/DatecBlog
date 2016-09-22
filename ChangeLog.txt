@@ -5,6 +5,21 @@ This is the changelog description file for 'datec_blog' authored by Philipp Roen
 
 ------------------------
 
+Version 1.0.4
+=============
+
+TYPO3 CMS 7.x Support!
+Bugfixes, improvement in display and comment cound in list view.
+
+[BUGIFX] List view now repots if no entries are found.
+[BUGFIX] Image references are now properly added on blogposts.
+[BUGFIX] Flash messages will be emptied after leaving 
+[QUALITY] Fixed some german translation text.
+[QUALITY] Fixed some german manual text.
+[DESIGN] Caret symbol now has default CSS without Bootstrap 3 rendering
+[FEATURE] Comment count in blogposts list view.
+[FEATURE] TYPO3 CMS 7.x Support
+
 Version 1.0.3
 =============
 

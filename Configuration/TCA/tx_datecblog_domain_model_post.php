@@ -121,20 +121,7 @@ return array(
 		'images' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:datec_blog/Resources/Private/Language/locallang.xlf:tx_datecblog_domain_model_post.images',
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-		        'images',
-		        array(
-		            'maxitems' => 5,
-		            'minitems' => 0,
-		            'appearance' => array(
-		                'enabledControls' => array(
-		                    'dragdrop' => FALSE,
-		                    'localize' => FALSE,
-		                ),
-		            	'createNewRelationLinkTitle' => 'Dateien hinzufügen',
-		            ),
-		        )
-			),
+			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('images'),
 		),
 		'teaser_text' => array(
 			'exclude' => 0,

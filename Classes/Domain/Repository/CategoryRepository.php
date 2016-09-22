@@ -23,6 +23,7 @@ namespace Datec\DatecBlog\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
 /**
  *
@@ -45,7 +46,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * - we do not want to restrict the backend storage pages
 	 */
 	 public function initializeObject() {
-	 	$query = $this->createQuery();	 	
+	 	$query = $this->createQuery();
         $defaultQuerySettings = $query->getQuerySettings();
         $defaultQuerySettings->setRespectStoragePage(FALSE);
         $this->setDefaultQuerySettings($defaultQuerySettings);
@@ -57,15 +58,15 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * does not respect access or hierarchy, use findWithChildren() for that
 	 *
 	 * @param array $usergroups current users groups
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array The query result object or an array if $returnRawQueryResult is TRUE
 	 */
-	public function findAll($ingoreEnableFields = FALSE) {
+	public function findAll($ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 				
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -77,15 +78,15 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds an object matching the given identifier
 	 *
 	 * @param int $uid The identifier of the object to find
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findByUid($uid, $ingoreEnableFields = FALSE) {
+	public function findByUid($uid, $ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -97,17 +98,24 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all objects matching the given parent object identifier
 	 *
 	 * @param int $parentId The parent object identification to search by
-	 * @param array $usergroups current users groups to resctrict access by (optional)
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param array $usergroups current users groups to restrict access by (optional)
+     * @param int $storagePid respects storage PID
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return array List of all matching objects
 	 */
-	public function findByParent($parentId, $usergroups = array(), $ingoreEnableFields = FALSE) {
-		$contraints = array();
+	public function findByParent($parentId, $usergroups = array(), $storagePid = NULL, $ignoreEnableFields = FALSE) {
+		$constraints = array();
 		$query = $this->createQuery();
-		
-		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+        /** @var $defaultQuerySettings Typo3QuerySettings */
+        $defaultQuerySettings = $query->getQuerySettings();
+
+        if ($storagePid !== NULL) {
+            $defaultQuerySettings->setRespectStoragePage(TRUE);
+            $defaultQuerySettings->setStoragePageIds(array($storagePid));
+        }
+
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -116,14 +124,14 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		
 		// logged-in feUser should have usergroups to compare by OR
 		if (count($usergroups)) {
-			$usergroupsContraints = array();			
-			$usergroupsContraints[] = $query->equals('usergroups', ''); // can be unrestricted
+			$usergroupsConstraints = array();
+            $usergroupsConstraints[] = $query->equals('usergroups', ''); // can be unrestricted
 			
 			foreach ($usergroups as $usergroup) {
-				$usergroupsContraints[] = $query->contains('usergroups', $usergroup);
+                $usergroupsConstraints[] = $query->contains('usergroups', $usergroup);
 			}
 			
-			$constraints[] = $query->logicalOr($usergroupsContraints);
+			$constraints[] = $query->logicalOr($usergroupsConstraints);
 		} else { // otherwise only categories without access restictions are allowed
 			$constraints[] = $query->equals('usergroups', '');
 		}
@@ -137,21 +145,23 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param int $parentId The parent object identification to search by
 	 * @param array $usergroups current users groups to resctrict access by (optional)
 	 * @param boolean $hierarchical return as hierarchy or just as list (optional)
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional
+     * @param int $storagePid respects storage PID
 	 * @return array The array of objects with children
 	 */
-	public function findWithChildren($parentId, $usergroups = array(), $hierarchical = TRUE, $ingoreEnableFields = FALSE) {
-		$children = $this->findByParent($parentId, $usergroups, $ingoreEnableFields);
+	public function findWithChildren($parentId, $usergroups = array(), $hierarchical = TRUE, $storagePid = NULL, $ignoreEnableFields = FALSE) {
+		$children = $this->findByParent($parentId, $usergroups, $storagePid, $ignoreEnableFields);
+
 		if (count($children) > 0) {
 			$i = 0;
 			foreach($children as $child) {
 				$childUid = $child->getUid();
 				if ($hierarchical) {		
 					$childrenArray[$i]['category'] = $child;
-					$childrenArray[$i]['children'] = $this->findWithChildren($childUid, $usergroups, $hierarchical, $ingoreEnableFields);
+					$childrenArray[$i]['children'] = $this->findWithChildren($childUid, $usergroups, $hierarchical, $storagePid, $ignoreEnableFields);
 				} else {
 					$childrenArray[] = $child;
-					$childrenArray = array_merge($childrenArray, $this->findWithChildren($childUid, $usergroups, $hierarchical, $ingoreEnableFields));
+					$childrenArray = array_merge($childrenArray, $this->findWithChildren($childUid, $usergroups, $hierarchical, $storagePid, $ignoreEnableFields));
 				}
 				$i++;
 			}

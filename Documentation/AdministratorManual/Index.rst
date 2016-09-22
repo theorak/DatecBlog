@@ -23,13 +23,13 @@ Requirements
 ------------
 
 .. caution::
-	You must load the jQuery JavaScript framework yourself as the frontend plugin utilizes functions that depend on jQuery.
+	Your page must have jQuery JavaScript framework loaded, as the frontend plugin depends on jQuery.
 
 Installation
 ------------
 
 1) Download and install the extension via the extension manager (extKey: datec_blog).
-2) Add one storage folder for comments and comment creators, note down the page id (PID) of this folder.
+2) To organize blog content, create a system folder, or better yet - one for each comments, posts, categories and keywords. Note down the PID(s) of the folder(s).
 3) Check the Configuration section of this manual for the required configuration and follow the steps there.
 4) Insert the main plugin and optional ones as described below.
 

@@ -60,21 +60,30 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all objects
 	 *
 	 * @param array $newOrder array of 'COLUMNNAME' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_* (optional)
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden, starttime, endttime] (optional)
+	 * @param int respects storage PID
+     * @param boolean $ignoreEnableFields ignores enable fields [hidden, starttime, endttime] (optional)
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array The query result object or an array if $returnRawQueryResult is TRUE
 	 */
-	public function findAll($newOrder = array(), $ingoreEnableFields = FALSE) {
+	public function findAll($newOrder = array(), $storagePid = NULL, $ignoreEnableFields = FALSE) {
 		if (!empty($newOrder)) {
 			$this->defaultOrderings = $newOrder;
 		}
-		
-		$query = $this->createQuery();
-		
-		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+
+        $query = $this->createQuery();
+
+        /** @var $defaultQuerySettings Typo3QuerySettings */
+        $defaultQuerySettings = $query->getQuerySettings();
+
+        if ($storagePid !== NULL) {
+            $defaultQuerySettings->setRespectStoragePage(TRUE);
+            $defaultQuerySettings->setStoragePageIds(array($storagePid));
+        }
+
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled', 'starttime', 'endtime'));
-		}		
+		}
+
 		$this->setDefaultQuerySettings($defaultQuerySettings);
 		
 		return $query->execute();
@@ -84,15 +93,15 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds an object matching the given identifier
 	 *
 	 * @param int $uid The identifier of the object to find
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden, starttime, endttime] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden, starttime, endttime] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findByUid($uid, $ingoreEnableFields = FALSE) {
+	public function findByUid($uid, $ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -107,10 +116,11 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param \Datec\DatecBlog\Domain\Model\BloglistCriteria $bloglistCriteria criteria object
 	 * @param array $newOrder array of 'COLUMNNAME' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_* (optional)
-	 * @param boolean $ingoreEnableFields adds [hidden] to ignored enable fields (optional)
+     * @param int $storagePid respects storage PID
+	 * @param boolean $ingoreAllEnableFields adds [hidden] to ignored enable fields (optional)
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array The query result object or an array if $returnRawQueryResult is TRUE
 	 */
-	public function filterPosts($bloglistCriteria, $newOrder, $ingoreAllEnableFields = FALSE) {
+	public function filterPosts($bloglistCriteria, $newOrder, $storagePid, $ingoreAllEnableFields = FALSE) {
 		$constraints = array();
 		$enableFieldsToIgnore = array('starttime','endtime');
 		if ($ingoreAllEnableFields) {
@@ -122,14 +132,21 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		}
 		
 		$query = $this->createQuery();
-		
+
+        /** @var $querySettings Typo3QuerySettings */
 		$querySettings = $query->getQuerySettings();		
 		$querySettings->setIgnoreEnableFields(TRUE);
 		$querySettings->setEnableFieldsToBeIgnored($enableFieldsToIgnore);
 		$querySettings->setIncludeDeleted(FALSE);
-		$query->setQuerySettings($querySettings);
-		
-		// selected category filters are combined by OR
+
+        if ($storagePid !== NULL) {
+            $querySettings->setRespectStoragePage(TRUE);
+            $querySettings->setStoragePageIds(array($storagePid));
+        }
+
+        $query->setQuerySettings($querySettings);
+
+        // selected category filters are combined by OR
 		$categories = $bloglistCriteria->getCategories();
 		if (count($categories)) {
 			$categoryConstraints = array();

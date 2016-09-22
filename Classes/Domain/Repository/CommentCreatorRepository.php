@@ -55,15 +55,15 @@ class CommentCreatorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	/**
 	 * Finds all objects
 	 *
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findAll($ingoreEnableFields = FALSE) {		
+	public function findAll($ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);	
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -75,15 +75,15 @@ class CommentCreatorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * Finds an object matching the given identifier
 	 *
 	 * @param int $uid The identifier of the object to find
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findByUid($uid, $ingoreEnableFields = FALSE) {
+	public function findByUid($uid, $ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -96,15 +96,15 @@ class CommentCreatorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * we use this to determine the current user as known comment creator
 	 *
 	 * @param int $feUserId assigned frontend user identificator for this object
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findByFeUser($feUserId, $ingoreEnableFields = FALSE) {		
+	public function findByFeUser($feUserId, $ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -118,17 +118,17 @@ class CommentCreatorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 *
 	 * @param string $email an email address
 	 * @param string $username a username
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findByCredentials($email, $username, $ingoreEnableFields = FALSE) {
+	public function findByCredentials($email, $username, $ignoreEnableFields = FALSE) {
 		$constraints = array();
 	
 		$query = $this->createQuery();	
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+		$defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);

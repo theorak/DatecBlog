@@ -131,7 +131,6 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->feUser = $this->getFeUser();	
 		$this->beUser = $this->getBeUser();
 		
-		
 	}
 	
 	/**
@@ -170,9 +169,9 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$newOrder = (!empty($this->settings['display']['posts']['sorting']) && !empty($this->settings['display']['posts']['sortingDirection'])) ? array($this->settings['display']['posts']['sorting'] => $this->settings['display']['posts']['sortingDirection']) : array();
 		
 		if ($this->bloglistCriteria->hasFilterPropertiesSet()) {	
-			$postsResult = $this->postRepository->filterPosts($this->bloglistCriteria, $newOrder);
+			$postsResult = $this->postRepository->filterPosts($this->bloglistCriteria, $newOrder, $this->settings['posts']['storagePid']);
 		} else {			
-			$postsResult = $this->postRepository->findAll($newOrder);
+			$postsResult = $this->postRepository->findAll($newOrder, $this->settings['posts']['storagePid']);
 		}
 		
 		if ($postsResult) {
@@ -196,10 +195,10 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				if ($this->feUser) {
 					$feUserGroups = explode(',', $GLOBALS['TSFE']->gr_list); // use the hierarchical access list
 				}
-				
-				$categoriesResult = $this->categoryRepository->findWithChildren(0, $feUserGroups, FALSE); // get allowed Categories
+
+				$categoriesResult = $this->categoryRepository->findWithChildren(0, $feUserGroups, FALSE, $this->settings['categories']['storagePid']); // get allowed Categories
 				if (!$categoriesResult) {
-					$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+					$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				}
 				
 				foreach ($postsResult as $key => $post) {					
@@ -242,20 +241,20 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 							$latestComments[$postId]['count'] = $commentsCount;
 						}
 					} else {
-						$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+						$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 					}
 				}
 				if (count($postsResult)) {		// check again, category access test might have unset them all	
 					$this->view->assign('posts', $postsResult);
 				} else {
-					$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+					$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 				}
 				$this->view->assign('latestComments', $latestComments);
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPosts',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}
 		
 		$this->view->assign('bloglistCriteria', $this->bloglistCriteria);
@@ -307,10 +306,10 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				
 				$this->view->assign('post', $postResult);
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPostId',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPostId',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}
 		
 		$this->view->assign('duplicant1', md5(\TYPO3\CMS\Core\Utility\GeneralUtility::generateRandomBytes(64)));
@@ -338,13 +337,13 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 					
 					$this->view->assign('comments', $comments);
 				} else {
-					$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noComments',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+					$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noComments',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 				}
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPostId',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.noPostId',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}
 		
 		$this->view->assign('settings', $this->settings);
@@ -381,14 +380,14 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 							$this->commentCreatorRepository->add($commentCreator);
 							$this->persistenceManager->persistAll();
 						} else {
-							$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+							$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.errors.dbError',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 							$success = FALSE;
 						}
 					}					
 					
 					if ($commentCreator->isBlocked()) {
 						// this badboy is not allowed here
-						$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.commentCreator.blocked_true',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+						$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.commentCreator.blocked_true',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 						$success = FALSE;
 					}
 				}				
@@ -413,12 +412,12 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 										$fileName = $newFileinfo['basename'];
 										$files[] = $fileName;
 									} else {
-										$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.createComment_fileSize_false',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+										$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.createComment_fileSize_false',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 										$success = FALSE;
 										break;
 									}
 								} else {
-									$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.createComment_fileType_false',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+									$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.createComment_fileType_false',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 									$success = FALSE;
 									break;
 								}
@@ -433,15 +432,15 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 					
 					$this->commentRepository->add($this->comment);
 
-					$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.createComment_success',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
+					$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.createComment_success',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
 				} else {
 					$args['commentText'] = $this->comment->getText();
 				}				
 			} else {
-				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.spamProtection_failed',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.spamProtection_failed',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			}
 		} else {
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.spamProtection_failed',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_datecblog.messages.blogController.spamProtection_failed',$this->extKey), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		}
 	
 		$uriBuilder = $this->controllerContext->getUriBuilder();
@@ -526,8 +525,8 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->comment = new \Datec\DatecBlog\Domain\Model\Comment();
 		$commentCreator = new \Datec\DatecBlog\Domain\Model\CommentCreator();
 		
-		$this->comment->setPid($this->settings['commentsStoragePid']);
-		$commentCreator->setPid($this->settings['commentsStoragePid']);
+		$this->comment->setPid($this->settings['comments']['storagePid']);
+		$commentCreator->setPid($this->settings['comments']['storagePid']);
 		
 		if ($this->feUser) {
 			$commentCreatorResult = $this->commentCreatorRepository->findByFeUser($this->feUser['uid']);

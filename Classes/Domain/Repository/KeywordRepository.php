@@ -57,19 +57,27 @@ class KeywordRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param array $newOrder array of 'COLUMNNAME' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_* (optional)
 	 * @param int $limit limit how many objects to fetch, disabled by default (optional)
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+     * @param int $storagePid respects storage PID
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array The query result object or an array if $returnRawQueryResult is TRUE
 	 */
-	public function findAll($newOrder = array(), $limit = 0, $ingoreEnableFields = FALSE) {
+	public function findAll($newOrder = array(), $limit = 0, $storagePid = NULL, $ignoreEnableFields = FALSE) {
 		if (!empty($newOrder)) {
 			$this->defaultOrderings = $newOrder;
 		}
 		
 		$query = $this->createQuery();
-		
-		$defaultQuerySettings = $query->getQuerySettings();
-		$defaultQuerySettings->setIgnoreEnableFields($ingoreEnableFields);
-		if ($ingoreEnableFields) {
+
+        /** @var $defaultQuerySettings Typo3QuerySettings */
+        $defaultQuerySettings = $query->getQuerySettings();
+
+        if ($storagePid !== NULL) {
+            $defaultQuerySettings->setRespectStoragePage(TRUE);
+            $defaultQuerySettings->setStoragePageIds(array($storagePid));
+        }
+
+        $defaultQuerySettings->setIgnoreEnableFields($ignoreEnableFields);
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}		
 		$this->setDefaultQuerySettings($defaultQuerySettings);
@@ -85,14 +93,14 @@ class KeywordRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds an object matching the given identifier
 	 *
 	 * @param int $uid The identifier of the object to find
-	 * @param boolean $ingoreEnableFields ignores enable fields [hidden] (optional)
+	 * @param boolean $ignoreEnableFields ignores enable fields [hidden] (optional)
 	 * @return object The matching object if found, otherwise NULL
 	 */
-	public function findByUid($uid, $ingoreEnableFields = FALSE) {
+	public function findByUid($uid, $ignoreEnableFields = FALSE) {
 		$query = $this->createQuery();
 		
 		$defaultQuerySettings = $query->getQuerySettings();
-		if ($ingoreEnableFields) {
+		if ($ignoreEnableFields) {
 			$defaultQuerySettings->setEnableFieldsToBeIgnored(array('disabled'));
 		}
 		$this->setDefaultQuerySettings($defaultQuerySettings);

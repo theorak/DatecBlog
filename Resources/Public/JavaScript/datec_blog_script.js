@@ -1,5 +1,5 @@
 $().ready(function() {
-	if (typeof DatecBlog.pageId != "undefined") {
+	if ($('.tx-datec-blog').length > 0) {
 		if ($('#tx-datec-blog-postId').val() != "") {
 			DatecBlog.showSinglePost($('#tx-datec-blog-postId').val(), false);
 		}

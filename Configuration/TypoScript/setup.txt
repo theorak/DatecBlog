@@ -52,14 +52,24 @@ plugin.tx_datecblog_blog {
 		# rewrittenPropertyMapper = 1
 	}
     settings {
-        storagePid = {$plugin.tx_datecblog.persistence.storagePid}  
-        commentsStoragePid = {$plugin.tx_datecblog.persistence.storagePid} 
         mail {
         	internMailFrom = blog@no-reply.com
         	internMailFromName = Datec Blog
         }
         maxFileSize = 4000000
         allowedFileTypes = pdf,zip,png,jpg,jpeg,gif,txt,doc,docx
+		comments {
+			storagePid = {$plugin.tx_datecblog.persistence.storagePid}
+		}
+		posts {
+			storagePid = {$plugin.tx_datecblog.persistence.storagePid}
+		}
+		categories {
+			storagePid = {$plugin.tx_datecblog.persistence.storagePid}
+		}
+		keywords {
+			storagePid = {$plugin.tx_datecblog.persistence.storagePid}
+		}
         display {
         	dateFormat = d.m.Y
         	showDefaultHeaders = 1
