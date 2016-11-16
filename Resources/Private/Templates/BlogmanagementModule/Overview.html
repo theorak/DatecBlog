@@ -1,0 +1,12 @@
+<f:be.container pageTitle="Datec Blog" 
+				includeCssFiles="{0:'{f:uri.resource(path:\'CSS/style.css\')}',}">
+	<div class="tx-datec-blog-be-overview">
+		<h1><f:translate key="tx-datec-blog-be.label.BeModuleTitle"/></h1>
+		<div>
+			<f:link.action action="showBlog" controller="BlogmanagementModule"><f:translate key="tx_datecblog.be.link.action.showBlog" /></f:link.action>
+		</div>
+		<div>
+			<f:link.action action="listComments" controller="BlogmanagementModule"><f:translate key="tx_datecblog.be.link.action.listCommentaries" /></f:link.action>
+		</div>
+	</div>
+</f:be.container>

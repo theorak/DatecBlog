@@ -1,0 +1,68 @@
+<div class="{settings.cssClasses.formFieldWrap}">
+	<button type="button" value="{f:translate(key:'tx_datecblog.labels.backButton')}" class="{settings.cssClasses.formButton}" onclick="DatecBeBlog.leaveSinglePost();"><f:translate key="tx_datecblog.labels.backButton" /></button>
+</div>
+<f:if condition="{post}">
+	<f:then>
+		<div class="tx-datec-blog-post">
+			<div class="tx-datec-blog-post-header">					
+				<h2>{post.header}</h2>
+			</div>
+			<f:if condition="{post.images}">	
+				<f:if condition="{post.firstImageInTeaser}">		
+					<f:for each="{post.images}" as="image" iteration="iterator">
+						<f:if condition="{iterator.isFirst}">
+							<div class="tx-datec-blog-post-teaserImage">
+								<a rel="lightbox[{image.uid}]" class="lightbox" href="{f:uri.image(src:'{image.uid}', treatIdAsReference:'1')}">
+									<f:image src="{image.uid}" title="{image.title}" width="250" height="250" alt="{image.alternative}" treatIdAsReference="1" />
+								</a>
+							</div>
+						</f:if>
+					</f:for>
+				</f:if>
+			</f:if>
+			<f:if condition="{post.teaserText}">
+				<div class="tx-datec-blog-post-teaserText">
+					<f:format.html>{post.teaserText}</f:format.html>
+				</div>
+			</f:if>
+			<div class="tx-datec-blog-post-text">
+				<f:format.html>{post.text}</f:format.html>
+			</div>
+			<f:if condition="{post.images}">
+				<div class="tx-datec-blog-post-images">			
+					<f:for each="{post.images}" as="image" iteration="iterator">					
+						<a rel="lightbox[{image.uid}]" class="lightbox" href="{f:uri.image(src:'{image.uid}', treatIdAsReference:'1')}">
+							<f:image src="{image.uid}" title="{image.title}" width="250" height="250" alt="{image.alternative}" treatIdAsReference="1" />
+						</a>
+					</f:for>					
+				</div>
+            </f:if>
+			<div class="tx-datec-blog-post-meta">				
+				<div class="tx-datec-blog-post-date">
+					<f:if condition="{post.starttime}">
+						<f:then>
+							<f:format.date format="{settings.display.posts.dateFormat}">@{post.starttime}</f:format.date>
+						</f:then>
+						<f:else>
+							<f:format.date format="{settings.display.posts.dateFormat}">@{post.crdate}</f:format.date>
+						</f:else>
+					</f:if>			
+				</div>
+				<div class="tx-datec-blog-post-category"><span data-filter-type="category" data-filter-value="{post.category.uid}" onclick="DatecBeBlog.addToFilter(this)">[{post.category.name}]</span></div>
+				<f:if condition="{post.keywords}">
+					<div class="tx-datec-blog-post-keywords">
+						<f:translate key="tx_datecblog_domain_model_post.keywords" />
+						<f:for each="{post.keywords}" as="keyword">
+							<span data-filter-type="keyword" data-filter-value="{keyword.uid}" onclick="DatecBeBlog.addToFilter(this)">[{keyword.word}]</span>
+						</f:for>
+					</div>
+				</f:if>
+			</div>
+		</div>
+	</f:then>
+	<f:else>
+		<div class="info">
+			<f:flashMessages renderMode="div" />
+		</div>
+	</f:else>
+</f:if>

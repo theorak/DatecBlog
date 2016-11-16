@@ -1,0 +1,38 @@
+<f:comment>wake up, fluid!</f:comment>
+<f:be.container pageTitle="Datec Blog" 
+				includeCssFiles="{0:'{f:uri.resource(path:\'CSS/style.css\')}',}"
+				includeJsFiles="{0:'{f:uri.resource(path:\'JavaScript/datec_Blog_be_script.js\')}',
+								 1:'{f:uri.resource(path:\'JavaScript/datec_translate.js\')}'}">
+<div class="tx-datec-blog-showBeBlogView">
+	<div class="tx-datec-blog-infobar">
+		<div id="tx-datec-blog-info" class="tx-datec-blog-info">
+			<f:flashMessages renderMode="div" />
+		</div>
+	</div>
+	<div class="tx-datec-blog-be-backLink"><f:link.action action="overview" controller="BlogmanagementModule"><f:translate key="tx_datecblog.be.link.action.overview" /></f:link.action></div>
+	<div class="tx-datec-blog-filterBloglistForm">
+		<input id="tx-datec-blog-postId" type="hidden" name="tx_datecblog_blog[postId]" value="{postId}" />
+		<input id="tx-datec-blog-commentText" type="hidden" name="tx_datecblog_blog[comment]" value="{commentText}" />
+		<input id="tx-datec-blog-lang" type="hidden" name="tx_datecblog_blog[lang]" value="{lang}" />
+		
+		<f:form id="tx-datec-blog-filterBloglistForm" action="listPosts" name="bloglistCriteria" noCacheHash="true" object="{bloglistCriteria}" class="{settings.cssClasses.form}">		
+			<f:render partial="BlogmanagementModule/FilterBloglistFormFields" arguments="{settings:settings, bloglistCriteria:bloglistCriteria}"/>
+		</f:form>
+	</div>
+	<div class="tx-datec-blog-status">
+		<img id="tx-datec-blog-ajax-loader" src="{f:uri.resource(path:'Images/ajax-loader.gif')}" style="display:none;" width="16" height="16" />
+	</div>
+	<div class="tx-datec-blog-be-posts">
+		<div id="tx-datec-blog-posts" class="tx-datec-blog-posts"></div>
+		<div id="tx-datec-blog-post-single" class="tx-datec-blog-post-single"></div>
+	</div>
+	<div class="tx-datec-blog-be-category">
+		<div class="tx-datec-blog-categories">
+			<f:if condition="{settings.display.showDefaultHeaders}">
+				<h3><f:translate key="tx_datecblog.titles.categoriesController.listCategories" /></h3>
+			</f:if>
+			<f:render partial="BlogmanagementModule/Categories" arguments="{settings:settings, categoryTree:categoryTree}"/>
+		</div>
+	</div>
+</div>
+</f:be.container>

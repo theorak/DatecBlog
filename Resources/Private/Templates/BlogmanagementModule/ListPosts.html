@@ -1,0 +1,10 @@
+<f:if condition="{pagination}">
+	<input type="hidden" id="tx-datec-blog-paginationCurrent" name="tx_datecblog_blog[paginationCurrent]" value="{pagination.current}" />
+</f:if>
+<f:if condition="{pagination.top}">
+	<f:render partial="Pagination" arguments="{pagination:pagination, position:'top'}" />
+</f:if>
+<f:render partial="BlogmanagementModule/Posts" arguments="{_all}"/>
+<f:if condition="{pagination.bottom}">
+	<f:render partial="Pagination" arguments="{pagination:pagination, position:'bottom'}" />
+</f:if>

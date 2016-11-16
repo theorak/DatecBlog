@@ -61,7 +61,7 @@
 }
 	
 .tx-datec-blog-filters > div {
-    float: left;
+    display: inline-block;
     margin-left: 5px;
 }
 
@@ -354,4 +354,47 @@ div.tx-datec-blog-cloud-item:focus {
 
 .tx-datec-blog-pagination-count {
 	text-align: center;
+}
+
+/**Backend Module**/
+.tx-datec-blog-be-overview {
+	padding: 20px
+}
+
+.tx-datec-blog-be-comment-list {
+	padding: 20px
+}
+
+.tx-datec-blog-be-comment-list tr, .tx-datec-blog-be-comment-list td{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 7px;
+}
+
+.tx-datec-blog-showBeBlogView {
+	padding: 20px;
+}
+
+.tx-datec-blog-be-posts .tx-datec-blog-post {
+	border: 1px solid #f1f1f1
+} 
+
+.tx-datec-blog-be-backLink {
+	padding-bottom: 10px;
+}
+
+.tx-datec-blog-be-filters {
+    border: 1px dashed #777;
+    min-height: 35px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.tx-datec-blog-be-filters > div {
+    display:inline-block;
+    margin-left: 5px;
+}
+
+.tx-datec-blog-be-filter {
+	display: inline-block;
 }
