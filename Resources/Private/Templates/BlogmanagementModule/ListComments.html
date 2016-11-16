@@ -1,0 +1,25 @@
+<f:be.container pageTitle="List Commentary" includeCssFiles="{0:'{f:uri.resource(path:\'CSS/style.css\')}',}"
+											includeJsFiles="{0:'{f:uri.resource(path:\'JavaScript/datec_Blog_be_script.js\')}',
+								 							 1:'{f:uri.resource(path:\'JavaScript/datec_translate.js\')}'}">
+<div class="tx-datec-blog-infobar">
+	<div id="tx-datec-blog-info" class="tx-datec-blog-info">
+		<f:flashMessages renderMode="div" />
+	</div>
+</div>
+
+<div  class="tx-datec-blog-be-comment-list">
+	
+	<script type="text/javascript">
+	<![CDATA[
+		function ask(url, message) {						
+		    var question = window.confirm(unescape(message));
+		    if(question) {
+				document.location.href = url;
+			}
+		}
+	]]>
+	</script>
+	<div class="tx-datec-blog-be-backLink"><f:link.action action="overview" controller="BlogmanagementModule"><f:translate key="tx_datecblog.be.link.action.overview" /></f:link.action></div>
+	<f:render partial="BlogmanagementModule/CommentaryTable" arguments="{_all}" />
+</div>
+</f:be.container>
