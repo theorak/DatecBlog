@@ -24,6 +24,7 @@ Requirements
 
 .. caution::
 	Your page must have jQuery JavaScript framework loaded, as the frontend plugin depends on jQuery.
+	As well as the jQuery validation plugin.
 
 Installation
 ------------

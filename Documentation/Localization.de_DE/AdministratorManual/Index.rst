@@ -23,7 +23,8 @@ Voraussetzungen
 ---------------
 
 .. caution::
-	Auf der Homepage muss jQuery JavaScript Framework global geladen seil, weil das Frontend Plugin jQuery nutzt.
+	Auf der Homepage muss jQuery JavaScript Framework global verfügbar sein, weil das Frontend Plugin jQuery benutzt.
+	Ebenso wie das jQuery Validation Plugin.
 
 Installation
 ------------
