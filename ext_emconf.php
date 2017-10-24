@@ -4,7 +4,7 @@
  * Extension Manager/Repository config file for ext: "datec_blog"
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
 	'title' => 'Datec Blog',
 	'description' => 'Adds a lightweight Blog to your Typo3 Site.',
 	'category' => 'plugin',
@@ -22,15 +22,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'version' => '1.1.0',
-	'constraints' => array(
-		'depends' => array(
-			'typo3' => '6.2.0-7.99.99',
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
-);
-
-?>
+    'constraints' => [
+        'depends' => [
+            'typo3' => '8.7.0-8.99.99',
+        ],
+        'conflicts' => [],
+    ],
+];

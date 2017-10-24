@@ -1,13 +1,14 @@
 {
   "name": "datec/datec-blog",
   "type": "typo3-cms-extension",
-  "description": "",
+  "description": "Adds a lightweight Blog to your Typo3 Site.",
   "keywords": [
-    "form",
-    "generic",
-    "application",
-    "content",
-    "elements"
+    "blog",
+    "light",
+    "modern",
+    "comment",
+    "keywords",
+    "datec"
   ],
   "homepage": "http://www.datec-schmidt.de/",
   "authors": [
@@ -20,6 +21,9 @@
   ],
   "support": {
     "issues": "https://github.com/theorak/datec_blog/issues"
+  },
+  "require": {
+    "typo3/cms-core": ">=8.7,<9.0"
   },
   "autoload": {
     "psr-4": {
